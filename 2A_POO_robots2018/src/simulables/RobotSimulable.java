@@ -5,16 +5,19 @@ import gui.ImageElement;
 import gui.Simulable;
 import representation_donnees.*;
 
-public class RobotSimulable implements Simulable {
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class RobotSimulable{
     private GUISimulator gui;
     private int x;
     private int y;
     private String imagefile;
     private Robot robot;
+    private ImageElement image;
 
-    public RobotSimulable(GUISimulator gui, Robot r) {
+     RobotSimulable(GUISimulator gui, Robot r) {
         this.gui = gui;
-        gui.setSimulable(this);
         this.robot = r;
 
         try {
@@ -33,19 +36,50 @@ public class RobotSimulable implements Simulable {
 
     }
 
-    @Override
-    public void next() {
+    public void moveDirection (Direction d) {
+        Case new_pos = null;
+         try {
+             new_pos = CarteSimulable.getCarteSim().getVoisin(robot.getPosition(), d);
+         } catch (ArrayIndexOutOfBoundsException e) {
+             System.out.println("Voisin ne existe pas");
+         }
 
-    }
+         robot.setPosition(new_pos);
 
-    @Override
-    public void restart() {
+         boolean can_move = true;
+        try {
 
-    }
+            this.x = robot.getPosition().getColonne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
+            this.y = robot.getPosition().getLigne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
 
-    public void draw() {
+        } catch (NullPointerException e) {
+            System.out.println("Case invalid");
+            can_move = false;
+        }
+
+        if(can_move)
+            translade(d);
+     }
+
+
+    void draw() {
         //System.out.println("printing robot at (" + robot.getPosition().getLigne() + ", " + robot.getPosition().getColonne() + ")" );
-        if(imagefile != null)
-            gui.addGraphicalElement(new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null));
+        if(imagefile != null) {
+            image = new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null);
+            gui.addGraphicalElement(image);
+        }
+    }
+
+    void translade(Direction d) {
+         int dx = 0, dy = 0;
+
+         switch (d) {
+             case OUEST: dx = - (int) CarteSimulable.getSquareSide(); dx = 0; break;
+             case NORD: dx = 0; dy = - (int) CarteSimulable.getSquareSide(); break;
+             case SUD: dx = 0; dy = (int) CarteSimulable.getSquareSide(); break;
+             case EST: dx = (int) CarteSimulable.getSquareSide(); dy = 0; break;
+         }
+
+         image.translate(dx, dy);
     }
 }

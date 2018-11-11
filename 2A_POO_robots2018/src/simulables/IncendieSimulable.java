@@ -5,7 +5,7 @@ import gui.ImageElement;
 import gui.Simulable;
 import representation_donnees.Incendie;
 
-public class IncendieSimulable implements Simulable {
+public class IncendieSimulable{
     private GUISimulator gui;
     private int x;
     private int y;
@@ -15,7 +15,6 @@ public class IncendieSimulable implements Simulable {
 
     public IncendieSimulable(GUISimulator gui, Incendie i) {
         this.gui = gui;
-        gui.setSimulable(this);
         this.incendie = i;
 
         try {
@@ -26,16 +25,6 @@ public class IncendieSimulable implements Simulable {
         } catch (NullPointerException e) {
             System.out.println("Case invalid");
         }
-    }
-
-    @Override
-    public void next() {
-
-    }
-
-    @Override
-    public void restart() {
-
     }
 
     public void draw() {

@@ -164,7 +164,7 @@ public class LecteurDonnees {
                         + "nb litres pour eteindre doit etre > 0");
             }
             verifieLigneTerminee();
-
+            
             new_incendie = new Incendie(new Case(lig, col), intensite);
 
             System.out.println("position = (" + new_incendie.getPosition().getLigne() + "," + new_incendie.getPosition().getColonne()

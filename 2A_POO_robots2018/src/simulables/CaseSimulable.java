@@ -9,7 +9,7 @@ import representation_donnees.NatureTerrain;
 
 import java.awt.*;
 
-public class CaseSimulable implements Simulable {
+public class CaseSimulable{
     private GUISimulator gui;
     private int x;
     private int y;
@@ -18,7 +18,6 @@ public class CaseSimulable implements Simulable {
 
     public CaseSimulable(GUISimulator gui, Case pos) {
         this.gui = gui;
-        gui.setSimulable(this);
         this.tile = pos;
 
         try {
@@ -37,17 +36,6 @@ public class CaseSimulable implements Simulable {
             case EAU: this.imagefile = "textures/eau_texture.gif"; break;
             case ROCHE: this.imagefile = "textures/roche_texture.jpg"; break;
         }
-    }
-
-
-    @Override
-    public void next() {
-
-    }
-
-    @Override
-    public void restart() {
-
     }
 
     public void draw() {

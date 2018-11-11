@@ -12,6 +12,8 @@ public class RobotsSimulable {
         robots_simulables = new ArrayList<RobotSimulable>(size);
     }
 
+    public static RobotSimulable getRobotSimulable(int index) { return robots_simulables.get(index); }
+
     public static void drawRobots(GUISimulator gui, ArrayList<Robot> robots_list) {
         RobotSimulable curr_robot;
 

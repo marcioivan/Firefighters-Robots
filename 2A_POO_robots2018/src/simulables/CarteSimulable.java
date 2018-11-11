@@ -4,7 +4,10 @@ import gui.GUISimulator;
 import representation_donnees.Carte;
 
 public class CarteSimulable {
+    public static Carte carte_sim;
     private static double square_side;
+
+    public static Carte getCarteSim() {return CarteSimulable.carte_sim;}
 
     public static void setSquareSide(double l) {
         CarteSimulable.square_side = l;
@@ -15,6 +18,7 @@ public class CarteSimulable {
     }
 
     public static void draw(GUISimulator gui, Carte carte) {
+        carte_sim = carte;
 
         CaseSimulable curr_case;
         for(int i = 0; i < carte.getNbLignes(); i++) {

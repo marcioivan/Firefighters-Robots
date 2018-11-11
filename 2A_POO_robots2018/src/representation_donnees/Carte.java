@@ -26,6 +26,42 @@ public class Carte {
 	public Case getCase(int lig, int col) {
 		return carte_matrix[lig][col];
 	}
-	//public boolean voisinExiste(Case src, Direction dir){}
-	//public Case getVoisin(Case src, Direction dir){}
+
+	public boolean voisinExiste(Case src, Direction dir) {
+		boolean existe = false;
+
+		switch(dir) {
+			case EST: if(src.getColonne() + 1 >= n_col) existe = false;
+					  else existe = true;
+					  break;
+			case SUD: if(src.getLigne() + 1 >= n_lin) existe = false;
+					  else existe = true;
+					  break;
+			case NORD: if(src.getLigne() - 1 < 0) existe = false;
+					   else existe = true;
+					   break;
+			case OUEST: if(src.getColonne() - 1 < 0) existe = false;
+						else existe = true;
+						break;
+		}
+
+		return existe;
+	}
+
+	public Case getVoisin(Case src, Direction dir) throws ArrayIndexOutOfBoundsException {
+		Case voisin = null;
+
+		if(voisinExiste(src, dir)) {
+
+			switch (dir) {
+				case EST: voisin = this.getCase(src.getLigne(), src.getColonne() + 1); break;
+				case SUD: voisin = this.getCase(src.getLigne() + 1, src.getColonne()); break;
+				case NORD: voisin = this.getCase(src.getLigne() - 1, src.getColonne()); break;
+				case OUEST: voisin = this.getCase(src.getLigne(), src.getColonne() - 1); break;
+			}
+		}
+		else throw new ArrayIndexOutOfBoundsException();
+
+		return voisin;
+	}
 }
