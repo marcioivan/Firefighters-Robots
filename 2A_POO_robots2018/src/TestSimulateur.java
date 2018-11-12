@@ -2,11 +2,8 @@ import gui.GUISimulator;
 import io.LecteurDonnees;
 import representation_donnees.Direction;
 import representation_donnees.DonneesSimulation;
-import simulables.CarteSimulable;
-import simulables.IncendiesSimulable;
-import simulables.RobotsSimulable;
-import simulation.DeplaceRobotEvenement;
-import simulation.Simulateur;
+import simulables.*;
+import simulation.*;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -45,6 +42,19 @@ public class TestSimulateur {
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(RobotsSimulable.getRobotSimulable(0), Direction.NORD, 2));
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(RobotsSimulable.getRobotSimulable(0), Direction.NORD, 3));
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(RobotsSimulable.getRobotSimulable(0), Direction.NORD, 4));
+
+            RobotSimulable robot_2 = RobotsSimulable.getRobotSimulable(1);
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.NORD, 1));
+            IncendieSimulable incendie = IncendiesSimulable.getIncendieAt(5, 5);
+            simulateur.ajouteEvenement(new IntervinirRobotEvenement(robot_2, incendie, 2));
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.OUEST, 3));
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.OUEST, 4));
+            simulateur.ajouteEvenement(new DebutRemplirRobotEvenement(5));
+            simulateur.ajouteEvenement(new FinRemplirRobotEvenement(robot_2, 35));
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.EST, 36));
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.EST, 37));
+            simulateur.ajouteEvenement(new IntervinirRobotEvenement(robot_2, incendie, 38));
+
 
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");

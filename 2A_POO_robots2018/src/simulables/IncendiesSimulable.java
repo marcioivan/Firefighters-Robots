@@ -12,6 +12,14 @@ public class IncendiesSimulable {
         incendies_simulables = new ArrayList<IncendieSimulable>(size);
     }
 
+    public static IncendieSimulable getIncendieAt(int lig, int col) {
+        for (IncendieSimulable incendie_simulable : incendies_simulables) {
+            if (incendie_simulable.getLigne() == lig && incendie_simulable.getColonne() == col)
+                return incendie_simulable;
+        }
+        return null;
+    }
+
     public static void drawIncendies(GUISimulator gui, ArrayList<Incendie> incendies_list) {
         IncendieSimulable curr_incendie;
 

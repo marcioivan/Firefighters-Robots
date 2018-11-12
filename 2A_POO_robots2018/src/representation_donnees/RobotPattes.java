@@ -23,11 +23,11 @@ public class RobotPattes extends RobotTerrestre{
 
     @Override
     public void deverserEau(int vol) {
-        //rien pour le moment
+        //rien
     }
 
     @Override
     public void remplirReservoir() {
-        //rien pour le moment
+        //rien
     }
 }

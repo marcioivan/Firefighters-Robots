@@ -17,11 +17,11 @@ public class RobotDrone extends RobotAerien {
 
     @Override
     public void deverserEau(int vol) {
-        //rien pour le moment
+        super.volume = 0;
     }
 
     @Override
     public void remplirReservoir() {
-        //rien pour le moment
+        super.volume = 10000;
     }
 }

@@ -3,15 +3,27 @@ package simulation;
 import gui.GUISimulator;
 import gui.Simulable;
 
-import java.util.LinkedList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
+class EvenementComparator implements Comparator<Evenement> {
+    @Override
+    public int compare(Evenement e1, Evenement e2) {
+        if(e1.getDate() < e2.getDate())
+            return -1;
+        if (e1.getDate() > e2.getDate())
+            return 1;
+        return 0;
+    }
+}
 
 public class Simulateur implements Simulable {
     private long dateSimulation;
-    private LinkedList<Evenement> evenements;
+    private PriorityQueue<Evenement> evenements;
 
     public Simulateur(GUISimulator gui) {
         dateSimulation = 0;
-        evenements = new LinkedList<>();
+        evenements = new PriorityQueue<>(10, new EvenementComparator());
         gui.setSimulable(this);
     }
 
@@ -22,14 +34,14 @@ public class Simulateur implements Simulable {
     private void incrementeDate() { dateSimulation++; }
 
     private boolean simulationTerminee() {
-        return evenements.peekFirst() == null;
+        return evenements.size() == 0;
     }
 
     @Override
     public void next() {
         this.incrementeDate();
 
-        while(!simulationTerminee() && evenements.peek().getDate() == dateSimulation) {
+        while(!simulationTerminee() && evenements.peek().getDate() <= dateSimulation) {
             evenements.poll().execute();
         }
     }
@@ -37,6 +49,6 @@ public class Simulateur implements Simulable {
     @Override
     public void restart() {
         dateSimulation = 0;
-        evenements = new LinkedList<>();
+        evenements = new PriorityQueue<>(10, new EvenementComparator());
     }
 }

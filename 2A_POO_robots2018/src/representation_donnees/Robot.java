@@ -2,8 +2,8 @@ package representation_donnees;
 
 public abstract class Robot {
 	private Case position;
-	protected int volume;
-	protected int vitesse;
+	int volume = 0;
+	int vitesse;
 
 	public Case getPosition(){
 		return position;

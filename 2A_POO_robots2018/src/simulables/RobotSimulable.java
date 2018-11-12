@@ -36,6 +36,8 @@ public class RobotSimulable{
 
     }
 
+    public Robot getRobot() { return this.robot;}
+
     public void moveDirection (Direction d) {
         Case new_pos = null;
          try {
@@ -61,6 +63,19 @@ public class RobotSimulable{
             translade(d);
      }
 
+     public int deverser() {
+         if(robot instanceof RobotDrone) { robot.deverserEau(0); return 10000; }
+         else if(robot instanceof RobotChenilles) { robot.deverserEau(100); return 100; }
+         else if(robot instanceof RobotRoues) { robot.deverserEau(100); return 100; }
+         else if(robot instanceof RobotPattes) { robot.deverserEau(10); return 10; }
+
+         return 0;
+     }
+
+     public void remplir() {
+         robot.remplirReservoir();
+     }
+
 
     void draw() {
         //System.out.println("printing robot at (" + robot.getPosition().getLigne() + ", " + robot.getPosition().getColonne() + ")" );
@@ -70,14 +85,14 @@ public class RobotSimulable{
         }
     }
 
-    void translade(Direction d) {
+    private void translade(Direction d) {
          int dx = 0, dy = 0;
 
          switch (d) {
-             case OUEST: dx = - (int) CarteSimulable.getSquareSide(); dx = 0; break;
-             case NORD: dx = 0; dy = - (int) CarteSimulable.getSquareSide(); break;
-             case SUD: dx = 0; dy = (int) CarteSimulable.getSquareSide(); break;
-             case EST: dx = (int) CarteSimulable.getSquareSide(); dy = 0; break;
+             case OUEST: dx = - (int) CarteSimulable.getSquareSide(); break;
+             case NORD: dy = - (int) CarteSimulable.getSquareSide(); break;
+             case SUD: dy = (int) CarteSimulable.getSquareSide(); break;
+             case EST: dx = (int) CarteSimulable.getSquareSide(); break;
          }
 
          image.translate(dx, dy);

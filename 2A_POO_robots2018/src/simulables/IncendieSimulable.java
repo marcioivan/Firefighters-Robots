@@ -2,7 +2,6 @@ package simulables;
 
 import gui.GUISimulator;
 import gui.ImageElement;
-import gui.Simulable;
 import representation_donnees.Incendie;
 
 public class IncendieSimulable{
@@ -11,9 +10,10 @@ public class IncendieSimulable{
     private int y;
     private String imagefile = "textures/incendie_texture.gif";
     private Incendie incendie;
+    private ImageElement image;
 
 
-    public IncendieSimulable(GUISimulator gui, Incendie i) {
+    IncendieSimulable(GUISimulator gui, Incendie i) {
         this.gui = gui;
         this.incendie = i;
 
@@ -27,8 +27,28 @@ public class IncendieSimulable{
         }
     }
 
-    public void draw() {
-        gui.addGraphicalElement(new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null));
+    public int getColonne() {
+        return (x - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
+    }
+
+    public int getLigne() {
+        return (y - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
+    }
+
+    public void decroitre(int lit) {
+        /*if(incendie.getIntensite() - lit > 0) {
+            System.out.println("Feu intensite: " + incendie.getIntensite());
+            incendie.decIntensite(lit);
+        }
+        else {*/
+            System.out.println("Le feu a été éteint");
+            image.translate(1000000000, 1000000000); //delete
+        //}
+    }
+
+    void draw() {
+        image = new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null);
+        gui.addGraphicalElement(image);
     }
 
 }

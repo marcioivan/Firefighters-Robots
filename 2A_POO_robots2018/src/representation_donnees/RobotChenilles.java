@@ -26,12 +26,17 @@ public class RobotChenilles extends RobotTerrestre {
     }
 
     @Override
-    public void deverserEau(int vol) {
-        //rien pour le moment
+    public void deverserEau(int vol) throws ArithmeticException{
+        if(super.volume - vol > 0)
+            super.volume -= vol;
+        else {
+            super.volume = 0;
+            throw new ArithmeticException();
+        }
     }
 
     @Override
     public void remplirReservoir() {
-        //rien pour le moment
+        super.volume = 2000;
     }
 }
