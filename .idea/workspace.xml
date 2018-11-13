@@ -2,31 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02c0f555-9057-4a60-8d74-d82d0cd26d81" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/FinRemplirRobotEvenement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/IntervinirRobotEvenement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/TestSimulateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/TestSimulateur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/Incendie.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/Incendie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/Robot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotChenilles.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotChenilles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotDrone.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotDrone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotRoues.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/representation_donnees/RobotRoues.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/IncendieSimulable.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/IncendieSimulable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/IncendiesSimulable.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/IncendiesSimulable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/RobotSimulable$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/RobotSimulable$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/RobotSimulable.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulables/RobotSimulable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulation/Simulateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/bin/simulation/Simulateur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotChenilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotChenilles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotDrone.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotDrone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotPattes.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotPattes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotRoues.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotRoues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendiesSimulable.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendiesSimulable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/RobotSimulable.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/RobotSimulable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/Simulateur.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,14 +35,14 @@
         <counts>
           <entry key="Makefile" value="8" />
           <entry key="html" value="5" />
-          <entry key="java" value="118" />
+          <entry key="java" value="120" />
           <entry key="map" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="JAVA" value="118" />
+          <entry key="JAVA" value="120" />
           <entry key="PLAIN_TEXT" value="18" />
         </counts>
       </usages-collector>
@@ -68,12 +50,12 @@
         <counts>
           <entry key="Makefile" value="277" />
           <entry key="dummy" value="5" />
-          <entry key="java" value="11663" />
+          <entry key="java" value="11859" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11663" />
+          <entry key="JAVA" value="11859" />
           <entry key="PLAIN_TEXT" value="282" />
         </counts>
       </usages-collector>
@@ -81,7 +63,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/Simulateur.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="735">
@@ -95,16 +77,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+            <state relative-caret-position="288">
+              <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#921#922#0" expanded="true" />
                 <element signature="e#987#988#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/EteindreIncendieEvenement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+              <folding>
+                <element signature="e#347#348#0" expanded="true" />
+                <element signature="e#379#380#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="19" column="75" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -121,8 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/IntervinirRobotEvenement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            <state relative-caret-position="105">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+            <state relative-caret-position="705">
+              <caret line="56" column="81" selection-start-line="56" selection-start-column="81" selection-end-line="56" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -184,16 +188,17 @@
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotRoues.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotChenilles.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/RobotDrone.java" />
-        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/RemplirRobotEvenement.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/FinRemplirRobotEvenement.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/DebutRemplirRobotEvenement.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendiesSimulable.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/RobotSimulable.java" />
-        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java" />
-        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/IntervinirRobotEvenement.java" />
         <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/Simulateur.java" />
+        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java" />
+        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulation/EteindreIncendieEvenement.java" />
+        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java" />
+        <option value="$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java" />
       </list>
     </option>
   </component>
@@ -203,8 +208,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="993" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="927" />
     <option name="height" value="1055" />
@@ -228,24 +233,6 @@
               <item name="2A_POO_robots2018" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="tpl_2A_POO" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2A_POO_robots2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="representation_donnees" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tpl_2A_POO" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2A_POO_robots2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="simulables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tpl_2A_POO" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2A_POO_robots2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="simulation" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -256,7 +243,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542059394550" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542103859888" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -299,18 +286,18 @@
       <workItem from="1541794282582" duration="26798000" />
       <workItem from="1541887711913" duration="8098000" />
       <workItem from="1541941782985" duration="28210000" />
-      <workItem from="1542020156200" duration="9122000" />
+      <workItem from="1542020156200" duration="12380000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86908000" />
+    <option name="totallyTimeSpent" value="90166000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="993" y="25" width="927" height="1055" extended-state="4" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15218595" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -612,46 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#921#922#0" expanded="true" />
-            <element signature="e#987#988#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulables/RobotSimulable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/IntervinirRobotEvenement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -663,6 +614,53 @@
             <element signature="imports" expanded="true" />
             <element signature="e#903#904#0" expanded="true" />
             <element signature="e#951#952#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/representation_donnees/Incendie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="75" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/EteindreIncendieEvenement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <folding>
+            <element signature="e#347#348#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/TestSimulateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="56" column="81" selection-start-line="56" selection-start-column="81" selection-end-line="56" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulation/IntervinirRobotEvenement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2A_POO_robots2018/src/simulables/IncendieSimulable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#921#922#0" expanded="true" />
+            <element signature="e#987#988#0" expanded="true" />
           </folding>
         </state>
       </provider>

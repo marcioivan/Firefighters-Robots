@@ -17,5 +17,6 @@ public class Incendie {
         return intensite;
     }
 
-    public void decIntensite(int lit) { intensite -= lit; }
+    public void setIntensite(int new_intensite) { intensite = new_intensite; }
+
 }

@@ -36,14 +36,18 @@ public class IncendieSimulable{
     }
 
     public void decroitre(int lit) {
-        /*if(incendie.getIntensite() - lit > 0) {
-            System.out.println("Feu intensite: " + incendie.getIntensite());
-            incendie.decIntensite(lit);
+        if(incendie.getIntensite() - lit > 0) {
+            //System.out.println("Feu intensite: " + incendie.getIntensite());
+            incendie.setIntensite(incendie.getIntensite() - lit);
         }
-        else {*/
-            System.out.println("Le feu a été éteint");
-            image.translate(1000000000, 1000000000); //delete
-        //}
+        else {
+            incendie.setIntensite(0);
+        }
+    }
+
+    public void eteindre() {
+        System.out.println("Le feu a été éteint");
+        image.translate(1000000000, 1000000000); //delete
     }
 
     void draw() {

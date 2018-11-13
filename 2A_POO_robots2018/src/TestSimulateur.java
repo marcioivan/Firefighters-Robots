@@ -54,6 +54,7 @@ public class TestSimulateur {
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.EST, 36));
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(robot_2, Direction.EST, 37));
             simulateur.ajouteEvenement(new IntervinirRobotEvenement(robot_2, incendie, 38));
+            simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, 38));
 
 
         } catch (FileNotFoundException e) {
