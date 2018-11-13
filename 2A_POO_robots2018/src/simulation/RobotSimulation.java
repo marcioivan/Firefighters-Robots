@@ -7,16 +7,22 @@ import representation_donnees.Carte;
 import representation_donnees.Case;
 import representation_donnees.Direction;
 import representation_donnees.Robot;
+import simulables.RobotSimulable;
 
 import java.util.List;
 
 public class RobotSimulation {
+    private RobotSimulable robotSimulable;
     private Robot robot;
     private Carte carte;
+    private Simulateur simulateur;
 
-    public RobotSimulation(Robot r, Carte c) {
-        robot = r;
+
+    public RobotSimulation(RobotSimulable r, Carte c, Simulateur s) {
+        robotSimulable = r;
+        robot = robotSimulable.getRobot();
         carte = c;
+        simulateur = s;
     }
 
     // T = dS/dV
@@ -81,6 +87,12 @@ public class RobotSimulation {
 
     public void moveTo(Case dst) {
         List<Direction> shortestPath = getShortestWay(dst);
-        //Create events
+
+        long date = simulateur.getDateSimulation() + 1;
+        for (Direction dir : shortestPath) {
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
+            date++;
+        }
+
     }
 }

@@ -57,8 +57,10 @@ public class TestSimulateur {
             simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, 38));
 
             // Little test for shortest path
-            RobotSimulation simu = new RobotSimulation(robot_2.getRobot(), sim_data.getCarte());
-            simu.getShortestWay(sim_data.getCarte().getCase(2, 1));
+            RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
+            RobotSimulation simu = new RobotSimulation(robot_3, sim_data.getCarte(), simulateur);
+            //simu.getShortestWay(sim_data.getCarte().getCase(2, 1));
+            simu.moveTo(sim_data.getCarte().getCase(2, 1));
 
 
         } catch (FileNotFoundException e) {

@@ -31,6 +31,8 @@ public class Simulateur implements Simulable {
         evenements.add(e);
     }
 
+    public long getDateSimulation() { return dateSimulation; }
+
     private void incrementeDate() { dateSimulation++; }
 
     private boolean simulationTerminee() {
