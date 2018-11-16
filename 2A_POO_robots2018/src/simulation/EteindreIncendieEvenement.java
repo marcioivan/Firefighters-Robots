@@ -4,6 +4,7 @@ import simulables.IncendieSimulable;
 
 public class EteindreIncendieEvenement extends Evenement {
     private IncendieSimulable incendieSimulable;
+    private ChefPompierElementaire chef;
 
 
     public EteindreIncendieEvenement(IncendieSimulable i, long date) {
@@ -11,8 +12,16 @@ public class EteindreIncendieEvenement extends Evenement {
         incendieSimulable = i;
     }
 
+    public EteindreIncendieEvenement(IncendieSimulable i, ChefPompierElementaire c, long date) {
+        super(date);
+        incendieSimulable = i;
+        chef = c;
+    }
+
     @Override
     public void execute() {
         incendieSimulable.eteindre();
+        if(chef != null)
+            chef.signalFireEstinguished(incendieSimulable);
     }
 }

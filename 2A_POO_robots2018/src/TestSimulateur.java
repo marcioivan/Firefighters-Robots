@@ -60,7 +60,7 @@ public class TestSimulateur {
             RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
             RobotSimulation simu = new RobotSimulation(robot_3, sim_data.getCarte(), simulateur);
             //simu.getShortestWay(sim_data.getCarte().getCase(2, 1));
-            simu.moveTo(sim_data.getCarte().getCase(2, 1));
+            simu.moveTo(sim_data.getCarte().getCase(2, 1), 1);
 
 
         } catch (FileNotFoundException e) {

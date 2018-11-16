@@ -45,6 +45,10 @@ public class IncendieSimulable{
         }
     }
 
+    public boolean isEstinguished() {
+        return incendie.getIntensite() == 0;
+    }
+
     public void eteindre() {
         System.out.println("Le feu a été éteint");
         image.translate(1000000000, 1000000000); //delete

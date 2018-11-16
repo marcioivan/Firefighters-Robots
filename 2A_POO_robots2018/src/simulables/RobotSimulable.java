@@ -39,13 +39,13 @@ public class RobotSimulable{
     public Robot getRobot() { return this.robot;}
 
     public void moveDirection (Direction d) {
-        Case new_pos = null;
+        Case new_pos = robot.getPosition();
          try {
              new_pos = CarteSimulable.getCarteSim().getVoisin(robot.getPosition(), d);
          } catch (ArrayIndexOutOfBoundsException e) {
              System.out.println("Voisin ne existe pas");
          }
-
+         System.out.println("new pos (" + new_pos.getLigne() + ", " + new_pos.getColonne() + ")");
          robot.setPosition(new_pos);
 
          boolean can_move = true;

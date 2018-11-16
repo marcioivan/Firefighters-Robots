@@ -11,6 +11,7 @@ public abstract class Robot {
 	public void setPosition(Case c){
 		position = c;
 	}
+	public int getVolume() { return volume; }
 
 	public abstract double getVitesse(NatureTerrain nt);
 	public abstract void deverserEau(int vol);

@@ -12,6 +12,8 @@ public class IncendiesSimulable {
         incendies_simulables = new ArrayList<IncendieSimulable>(size);
     }
 
+    public static  ArrayList<IncendieSimulable> getIncendiesList() { return incendies_simulables; }
+
     public static IncendieSimulable getIncendieAt(int lig, int col) {
         for (IncendieSimulable incendie_simulable : incendies_simulables) {
             if (incendie_simulable.getLigne() == lig && incendie_simulable.getColonne() == col)
