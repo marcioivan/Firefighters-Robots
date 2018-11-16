@@ -12,7 +12,7 @@ public class Node {
 
     private Case tile;
 
-    private Map<Direction, Double> shortestPath = new HashMap<>();
+    private List<Direction> shortestPath = new LinkedList<>();
 
     private Double distance = Double.MAX_VALUE;
 
@@ -33,10 +33,10 @@ public class Node {
         this.tile = tile;
     }
 
-    public Map<Direction, Double> getShortestPath() {
+    public List<Direction> getShortestPath() {
         return shortestPath;
     }
-    public void setShortestPath(Map<Direction, Double> shortestPath) {
+    public void setShortestPath(List<Direction> shortestPath) {
         this.shortestPath = shortestPath;
     }
 

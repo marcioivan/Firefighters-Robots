@@ -47,11 +47,11 @@ public class TestSimulateur {
             simulateur.ajouteEvenement(new IntervinirRobotEvenement(robot_2, incendie, 38));
             simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, 38));
 
-            // Little test for shortest path
-//            RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
-//
-//            RobotSimulation simu = new RobotSimulation(robot_3, simData.getCarte(), simulateur);
-//            simu.moveTo(simData.getCarte().getCase(2, 1), 40);
+//             Little test for shortest path
+            RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
+
+            RobotSimulation simu = new RobotSimulation(robot_3, simData.getCarte(), simulateur);
+            simu.moveTo(simData.getCarte().getCase(2, 1), 40);
 
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");

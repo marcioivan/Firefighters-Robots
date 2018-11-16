@@ -30,18 +30,12 @@ public class Main {
 
             Simulateur simulateur = new Simulateur(gui, simData);
 
-            // Little test for shortest path
-            RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
+            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
+            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
+                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), simulateur));
+            }
 
-            RobotSimulation simu = new RobotSimulation(robot_3, simData.getCarte(), simulateur);
-            simu.moveTo(simData.getCarte().getCase(2, 1), 1);
-
-//            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
-//            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
-//                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), simulateur));
-//            }
-//
-//            chef.chefier();
+            chef.chefier();
 
         } catch (
                 FileNotFoundException e) {

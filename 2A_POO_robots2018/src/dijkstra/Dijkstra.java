@@ -47,10 +47,10 @@ public class Dijkstra {
         Double sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
             evaluationNode.setDistance(sourceDistance + edgeWeight);
-            Map<Direction, Double> shortestPath = new HashMap<>(sourceNode.getShortestPath());
+            List<Direction> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
             Direction dirVoisin = sourceNode.getTile().getDirectionVoisin(evaluationNode.getTile());
             if(dirVoisin != null) {
-                shortestPath.put(dirVoisin, evaluationNode.getDistance());
+                shortestPath.add(dirVoisin);
                 evaluationNode.setShortestPath(shortestPath);
             }
         }

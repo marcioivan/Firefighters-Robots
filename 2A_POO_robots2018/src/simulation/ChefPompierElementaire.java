@@ -25,18 +25,15 @@ public class ChefPompierElementaire {
      */
     public void chefier() {
         while(!incendies.isEmpty()) {
-            RobotSimulation aux;
+            RobotSimulation robot;
 
             for (IncendieSimulable incendie : incendies) {
                 if (!tasks.containsKey(incendie)) {
                     if (!robotsLibres.isEmpty()) {
-                        aux = robotsLibres.poll();
-                        aux.intervinir(incendie);
-                        tasks.put(incendie, aux);
+                        robot = robotsLibres.poll();
+                        tasks.put(incendie, robot);
+                        robot.intervinir(incendie);
                     }
-                } else if (robotsLibres.contains(tasks.get(incendie))) {
-                    aux = tasks.get(incendie);
-                    aux.intervinir(incendie);
                 }
             }
         }

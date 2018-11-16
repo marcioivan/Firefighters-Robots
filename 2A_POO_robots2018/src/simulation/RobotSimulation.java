@@ -39,7 +39,7 @@ public class RobotSimulation {
         return (carte.getTailleCases() * 3600) / (robot.getVitesse(tile.getNature()) * 1000);
     }
 
-    public Map<Direction, Double> getShortestWay(Case destination) {
+    public List<Direction> getShortestWay(Case destination) {
         int nbLignes = carte.getNbLignes();
         int nbColonnes = carte.getNbColonnes();
         Graph graph = new Graph();
@@ -80,6 +80,20 @@ public class RobotSimulation {
             return destinationNode.getShortestPath();
         }
         return null;
+    }
+
+    public long moveTo(Case destination, long startDate) {
+        List<Direction> shortestPath = getShortestWay(destination);
+
+        long date = startDate + 1;
+
+        assert shortestPath != null;
+        for (Direction dir: shortestPath) {
+            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
+            date++;
+        }
+
+        return date;
     }
 
     private Case getEauProche(Case src) {
@@ -125,24 +139,6 @@ public class RobotSimulation {
         return tempsIntervertion;
     }
 
-    public long moveTo(Case destination, long startDate) {
-        Map<Direction, Double> shortestPath = getShortestWay(destination);
-
-        long date = startDate + 1;
-
-        assert shortestPath != null;
-        System.out.println("Dateinicial: " + date);
-        for (Map.Entry<Direction, Double> path: shortestPath.entrySet()) {
-            Direction dir = path.getKey();
-            System.out.println("Path: " + path.getKey());
-            simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
-            date += path.getValue();
-            System.out.println("Date: " + date);
-        }
-
-        return date;
-    }
-
     private long remplir(long date) {
         long dateStart = date;
         long dateFinish = 0;
@@ -165,18 +161,19 @@ public class RobotSimulation {
 
         if(robot.getVolume() == 0) {
             //goes to closest water tile to the fire to fill reservatory
-            date = moveTo(getEauProche(carte.getCase(incendie.getLigne(), incendie.getColonne())), date);
+            date = moveTo(getEauProche(robot.getPosition()), date);
             date = this.remplir(date);
+            chef.signalFree(this);
         }
         else {
             date = this.moveTo(carte.getCase(incendie.getLigne(), incendie.getColonne()), date);
             simulateur.ajouteEvenement(new IntervinirRobotEvenement(this.robotSimulable, incendie, date));
             date = getTempsIntervertion();
-            if(incendie.isEstinguished())
+            if(incendie.isEstinguished()) {
                 simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, chef, date));
+                chef.signalFree(this);
+            }
         }
-
-        simulateur.ajouteEvenement(new RobotLibreEvenement(this, chef, date));
     }
 
     void setChef(ChefPompierElementaire newChef) {

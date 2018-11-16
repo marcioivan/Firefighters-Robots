@@ -47,29 +47,19 @@ public class RobotSimulable{
      */
     public void moveDirection (Direction d) {
 
-        Case newPos = robot.getPosition();
+        Case newPos = null;
 
          try {
              newPos = CarteSimulable.getCarteSim().getVoisin(robot.getPosition(), d);
          } catch (ArrayIndexOutOfBoundsException e) {
              System.out.println("Voisin ne existe pas");
          }
-         System.out.println("new pos (" + newPos.getLigne() + ", " + newPos.getColonne() + ")");
-         robot.setPosition(newPos);
 
-         boolean canMove = true;
-        try {
-
-            this.x = CarteSimulable.getMinX() + robot.getPosition().getColonne() * CarteSimulable.getSquareSide();
-            this.y = CarteSimulable.getMinY() + robot.getPosition().getLigne() * CarteSimulable.getSquareSide();
-
-        } catch (NullPointerException e) {
-            System.out.println("Case invalid");
-            canMove = false;
-        }
-
-        if(canMove)
+        if(newPos != null) {
+            System.out.println("new pos (" + newPos.getLigne() + ", " + newPos.getColonne() + ")");
+            robot.setPosition(newPos);
             translade(d);
+        }
      }
 
     /**
