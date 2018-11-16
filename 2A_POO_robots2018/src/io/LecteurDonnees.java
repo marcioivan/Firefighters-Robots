@@ -1,14 +1,12 @@
 package io;
 
 
-import representation_donnees.*;
+import RepresentationDonnees.*;
 
 
 import java.io.*;
 import java.util.*;
 import java.util.zip.DataFormatException;
-
-
 
 
 /**
@@ -33,17 +31,16 @@ import java.util.zip.DataFormatException;
  */
 public class LecteurDonnees {
 
-
     public static DonneesSimulation creeDonnees(String fichierDonnees) throws FileNotFoundException, DataFormatException {
         System.out.println("\n == Lecture du fichier" + fichierDonnees);
         LecteurDonnees lecteur = new LecteurDonnees(fichierDonnees);
-        DonneesSimulation sim_data = new DonneesSimulation();
-        lecteur.creeCarte(sim_data);
-        lecteur.creeIncendies(sim_data);
-        lecteur.creeRobots(sim_data);
+        DonneesSimulation simData = new DonneesSimulation();
+        lecteur.creeCarte(simData);
+        lecteur.creeIncendies(simData);
+        lecteur.creeRobots(simData);
         scanner.close();
         System.out.println("\n == Lecture terminee");
-        return sim_data;
+        return simData;
     }
 
 
@@ -65,8 +62,6 @@ public class LecteurDonnees {
         System.out.println("\n == Lecture terminee");
     }
 
-
-
     // Tout le reste de la classe est prive!
 
     private static Scanner scanner;
@@ -81,22 +76,22 @@ public class LecteurDonnees {
         scanner.useLocale(Locale.US);
     }
 
-    private void creeCarte(DonneesSimulation sim_data) throws DataFormatException {
+    private void creeCarte(DonneesSimulation simData) throws DataFormatException {
         ignorerCommentaires();
         try {
             int nbLignes = scanner.nextInt();
             int nbColonnes = scanner.nextInt();
             int tailleCases = scanner.nextInt();	// en m
-            System.out.println("representation_donnees.Carte " + nbLignes + "x" + nbColonnes
+            System.out.println("RepresentationDonnees.Carte " + nbLignes + "x" + nbColonnes
                     + "; taille des cases = " + tailleCases);
 
             Carte carte = new Carte(nbLignes, nbColonnes, tailleCases);
-            sim_data.setCarte(carte);
-            Case curr_case;
+            simData.setCarte(carte);
+            Case currCase;
             for (int lig = 0; lig < nbLignes; lig++) {
                 for (int col = 0; col < nbColonnes; col++) {
-                    curr_case = creeCase(lig, col);
-                    carte.insertCase(lig, col, curr_case);
+                    currCase = creeCase(lig, col);
+                    carte.insertCase(lig, col, currCase);
                 }
             }
 
@@ -106,11 +101,10 @@ public class LecteurDonnees {
         }
     }
 
-
     private Case creeCase(int lig, int col) throws DataFormatException {
         ignorerCommentaires();
         String chaineNature = new String();
-        Case new_case;
+        Case newCase;
 
 
         try {
@@ -121,9 +115,9 @@ public class LecteurDonnees {
 
             verifieLigneTerminee();
 
-            new_case = new Case(lig, col, nature);
+            newCase = new Case(lig, col, nature);
 
-            System.out.print("representation_donnees.Case (" + new_case.getLigne() + "," + new_case.getColonne() + "): nature =" + new_case.getNature());
+            System.out.print("RepresentationDonnees.Case (" + newCase.getLigne() + "," + newCase.getColonne() + "): nature =" + newCase.getNature());
 
         } catch (NoSuchElementException e) {
             throw new DataFormatException("format de case invalide. "
@@ -131,17 +125,17 @@ public class LecteurDonnees {
         }
 
         System.out.println();
-        return new_case;
+        return newCase;
     }
 
-    private void creeIncendies(DonneesSimulation sim_data) throws DataFormatException {
+    private void creeIncendies(DonneesSimulation simData) throws DataFormatException {
         ignorerCommentaires();
         try {
             int nbIncendies = scanner.nextInt();
-            sim_data.initIncendiesList(nbIncendies);
+            simData.initIncendiesList(nbIncendies);
             System.out.println("Nb d'incendies = " + nbIncendies);
             for (int i = 0; i < nbIncendies; i++) {
-                sim_data.getIncendiesList().add(creeIncendie(i));
+                simData.getIncendiesList().add(creeIncendie(i));
             }
 
         } catch (NoSuchElementException e) {
@@ -153,7 +147,7 @@ public class LecteurDonnees {
     private Incendie creeIncendie(int i) throws DataFormatException {
         ignorerCommentaires();
         System.out.print("Incendie " + i + ": ");
-        Incendie new_incendie;
+        Incendie newIncendie;
 
         try {
             int lig = scanner.nextInt();
@@ -165,28 +159,27 @@ public class LecteurDonnees {
             }
             verifieLigneTerminee();
             
-            new_incendie = new Incendie(new Case(lig, col), intensite);
+            newIncendie = new Incendie(new Case(lig, col), intensite);
 
-            System.out.println("position = (" + new_incendie.getPosition().getLigne() + "," + new_incendie.getPosition().getColonne()
-                    + ");\t intensite = " + new_incendie.getIntensite());
+            System.out.println("position = (" + newIncendie.getPosition().getLigne() + "," + newIncendie.getPosition().getColonne()
+                    + ");\t intensite = " + newIncendie.getIntensite());
 
         } catch (NoSuchElementException e) {
             throw new DataFormatException("format d'incendie invalide. "
                     + "Attendu: ligne colonne intensite");
         }
 
-        return  new_incendie;
+        return  newIncendie;
     }
 
-
-    private void creeRobots(DonneesSimulation sim_data) throws DataFormatException {
+    private void creeRobots(DonneesSimulation simData) throws DataFormatException {
         ignorerCommentaires();
         try {
             int nbRobots = scanner.nextInt();
-            sim_data.initRobotsList(nbRobots);
+            simData.initRobotsList(nbRobots);
             System.out.println("Nb de robots = " + nbRobots);
             for (int i = 0; i < nbRobots; i++) {
-                sim_data.getRobotsList().add(creeRobot(i));
+                simData.getRobotsList().add(creeRobot(i, simData.getCarte()));
             }
 
         } catch (NoSuchElementException e) {
@@ -195,10 +188,10 @@ public class LecteurDonnees {
         }
     }
 
-    private Robot creeRobot(int i) throws DataFormatException {
+    private Robot creeRobot(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
-        System.out.print("representation_donnees.Robot " + i + ": ");
-        Robot new_robot = null;
+        System.out.print("RepresentationDonnees.Robot " + i + ": ");
+        Robot newRobot = null;
 
         try {
             int vitesse = 0;
@@ -223,26 +216,28 @@ public class LecteurDonnees {
             }
             verifieLigneTerminee();
 
+            Case caseRobot = carte.getCase(lig, col);
+
             if(type.contentEquals("DRONE")) {
                 if(s == null)
-                    new_robot = new RobotDrone(new Case(lig, col));
+                    newRobot = new RobotDrone(caseRobot);
                 else
-                    new_robot = new RobotDrone(new Case(lig, col), vitesse);
+                    newRobot = new RobotDrone(caseRobot, vitesse);
             }
             else if(type.contentEquals("ROUES")) {
                 if(s == null)
-                    new_robot = new RobotRoues(new Case(lig, col));
+                    newRobot = new RobotRoues(caseRobot);
                 else
-                    new_robot = new RobotRoues(new Case(lig, col), vitesse);
+                    newRobot = new RobotRoues(caseRobot, vitesse);
             }
             else if(type.contentEquals("CHENILLES")) {
                 if(s == null)
-                    new_robot = new RobotChenilles(new Case(lig, col));
+                    newRobot = new RobotChenilles(caseRobot);
                 else
-                    new_robot = new RobotChenilles(new Case(lig, col), vitesse);
+                    newRobot = new RobotChenilles(caseRobot, vitesse);
             }
             else if(type.contentEquals("PATTES")) {
-                new_robot = new RobotPattes(new Case(lig, col));
+                newRobot = new RobotPattes(caseRobot);
             }
 
             System.out.println();
@@ -251,11 +246,8 @@ public class LecteurDonnees {
                     + "Attendu: ligne colonne type [valeur_specifique]");
         }
 
-        return new_robot;
+        return newRobot;
     }
-
-
-
 
     /**
      * Lit et affiche les donnees de la carte.
@@ -267,7 +259,7 @@ public class LecteurDonnees {
             int nbLignes = scanner.nextInt();
             int nbColonnes = scanner.nextInt();
             int tailleCases = scanner.nextInt();	// en m
-            System.out.println("representation_donnees.Carte " + nbLignes + "x" + nbColonnes
+            System.out.println("RepresentationDonnees.Carte " + nbLignes + "x" + nbColonnes
                     + "; taille des cases = " + tailleCases);
 
             for (int lig = 0; lig < nbLignes; lig++) {
@@ -283,15 +275,12 @@ public class LecteurDonnees {
         // une ExceptionFormat levee depuis lireCase est remontee telle quelle
     }
 
-
-
-
     /**
      * Lit et affiche les donnees d'une case.
      */
     private void lireCase(int lig, int col) throws DataFormatException {
         ignorerCommentaires();
-        System.out.print("representation_donnees.Case (" + lig + "," + col + "): ");
+        System.out.print("RepresentationDonnees.Case (" + lig + "," + col + "): ");
         String chaineNature = new String();
         //		NatureTerrain nature;
 
@@ -313,7 +302,6 @@ public class LecteurDonnees {
         System.out.println();
     }
 
-
     /**
      * Lit et affiche les donnees des incendies.
      */
@@ -331,7 +319,6 @@ public class LecteurDonnees {
                     + "Attendu: nbIncendies");
         }
     }
-
 
     /**
      * Lit et affiche les donnees du i-eme incendie.
@@ -360,7 +347,6 @@ public class LecteurDonnees {
         }
     }
 
-
     /**
      * Lit et affiche les donnees des robots.
      */
@@ -379,14 +365,13 @@ public class LecteurDonnees {
         }
     }
 
-
     /**
      * Lit et affiche les donnees du i-eme robot.
      * @param i
      */
     private void lireRobot(int i) throws DataFormatException {
         ignorerCommentaires();
-        System.out.print("representation_donnees.Robot " + i + ": ");
+        System.out.print("RepresentationDonnees.Robot " + i + ": ");
 
         try {
             int lig = scanner.nextInt();
@@ -417,9 +402,6 @@ public class LecteurDonnees {
                     + "Attendu: ligne colonne type [valeur_specifique]");
         }
     }
-
-
-
 
     /** Ignore toute (fin de) ligne commencant par '#' */
     private void ignorerCommentaires() {

@@ -1,7 +1,7 @@
 package dijkstra;
 
-import representation_donnees.Case;
-import representation_donnees.Direction;
+import RepresentationDonnees.Case;
+import RepresentationDonnees.Direction;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Node {
+
     private Case tile;
 
-    private List<Direction> shortestPath = new LinkedList<>();
+    private Map<Direction, Double> shortestPath = new HashMap<>();
 
     private Double distance = Double.MAX_VALUE;
 
@@ -32,10 +33,10 @@ public class Node {
         this.tile = tile;
     }
 
-    public List<Direction> getShortestPath() {
+    public Map<Direction, Double> getShortestPath() {
         return shortestPath;
     }
-    public void setShortestPath(List<Direction> shortestPath) {
+    public void setShortestPath(Map<Direction, Double> shortestPath) {
         this.shortestPath = shortestPath;
     }
 

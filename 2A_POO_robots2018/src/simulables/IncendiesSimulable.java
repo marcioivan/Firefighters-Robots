@@ -1,34 +1,40 @@
 package simulables;
 
 import gui.GUISimulator;
-import representation_donnees.Incendie;
+import RepresentationDonnees.Incendie;
 
 import java.util.ArrayList;
 
 public class IncendiesSimulable {
-    private static ArrayList<IncendieSimulable> incendies_simulables;
+    private static ArrayList<IncendieSimulable> incendiesSimulables;
 
     public static void initIncendiesSimulablesList(int size) {
-        incendies_simulables = new ArrayList<IncendieSimulable>(size);
+        incendiesSimulables = new ArrayList<>(size);
     }
 
-    public static  ArrayList<IncendieSimulable> getIncendiesList() { return incendies_simulables; }
+    public static void clearIncendiesSimulablesList() {
+        if(incendiesSimulables != null) {
+            incendiesSimulables.clear();
+        }
+    }
+
+    public static  ArrayList<IncendieSimulable> getIncendiesList() { return incendiesSimulables; }
 
     public static IncendieSimulable getIncendieAt(int lig, int col) {
-        for (IncendieSimulable incendie_simulable : incendies_simulables) {
-            if (incendie_simulable.getLigne() == lig && incendie_simulable.getColonne() == col)
-                return incendie_simulable;
+        for (IncendieSimulable incendieSimulable : incendiesSimulables) {
+            if (incendieSimulable.getLigne() == lig && incendieSimulable.getColonne() == col)
+                return incendieSimulable;
         }
         return null;
     }
 
-    public static void drawIncendies(GUISimulator gui, ArrayList<Incendie> incendies_list) {
-        IncendieSimulable curr_incendie;
+    public static void drawIncendies(GUISimulator gui, ArrayList<Incendie> incendiesList) {
+        IncendieSimulable currIncendie;
 
-        for(int i = 0; i < incendies_list.size(); i++) {
-            curr_incendie = new IncendieSimulable(gui, incendies_list.get(i));
-            curr_incendie.draw();
-            incendies_simulables.add(curr_incendie);
+        for(int i = 0; i < incendiesList.size(); i++) {
+            currIncendie = new IncendieSimulable(gui, incendiesList.get(i));
+            currIncendie.draw();
+            incendiesSimulables.add(currIncendie);
         }
     }
 

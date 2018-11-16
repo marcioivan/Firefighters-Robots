@@ -2,7 +2,7 @@ package simulables;
 
 import gui.GUISimulator;
 import gui.ImageElement;
-import representation_donnees.Incendie;
+import RepresentationDonnees.Incendie;
 
 public class IncendieSimulable{
     private GUISimulator gui;
@@ -19,8 +19,8 @@ public class IncendieSimulable{
 
         try {
 
-            this.x = incendie.getPosition().getColonne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
-            this.y = incendie.getPosition().getLigne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
+            this.x = CarteSimulable.getMinX() + incendie.getPosition().getColonne() * CarteSimulable.getSquareSide();
+            this.y = CarteSimulable.getMinY() + incendie.getPosition().getLigne() * CarteSimulable.getSquareSide();
 
         } catch (NullPointerException e) {
             System.out.println("Case invalid");
@@ -28,11 +28,11 @@ public class IncendieSimulable{
     }
 
     public int getColonne() {
-        return (x - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
+        return(x - CarteSimulable.getMinX()) / CarteSimulable.getSquareSide();
     }
 
     public int getLigne() {
-        return (y - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
+        return (y - CarteSimulable.getMinY()) / CarteSimulable.getSquareSide();
     }
 
     public void decroitre(int lit) {

@@ -1,4 +1,4 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 public class Incendie {
     private Case position;
@@ -17,6 +17,8 @@ public class Incendie {
         return intensite;
     }
 
-    public void setIntensite(int new_intensite) { intensite = new_intensite; }
+    public void setIntensite(int newIntensite) {
+        intensite = newIntensite;
+    }
 
 }

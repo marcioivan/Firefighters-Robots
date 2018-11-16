@@ -1,4 +1,4 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 public class RobotRoues extends RobotTerrestre {
 
@@ -19,7 +19,7 @@ public class RobotRoues extends RobotTerrestre {
     }
 
     @Override
-    public void deverserEau(int vol) throws ArithmeticException{
+    public void deverserEau(int vol) throws ArithmeticException {
         if(super.volume - vol > 0)
             super.volume -= vol;
         else {

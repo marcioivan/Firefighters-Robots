@@ -1,4 +1,4 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 public enum NatureTerrain {
     EAU, FORET, ROCHE, TERRAIN_LIBRE, HABITAT

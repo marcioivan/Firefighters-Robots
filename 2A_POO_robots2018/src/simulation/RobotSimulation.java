@@ -3,12 +3,13 @@ package simulation;
 import dijkstra.Dijkstra;
 import dijkstra.Graph;
 import dijkstra.Node;
-import representation_donnees.*;
+import RepresentationDonnees.*;
 import simulables.IncendieSimulable;
 import simulables.RobotSimulable;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class RobotSimulation {
     private RobotSimulable robotSimulable;
@@ -38,7 +39,7 @@ public class RobotSimulation {
         return (carte.getTailleCases() * 3600) / (robot.getVitesse(tile.getNature()) * 1000);
     }
 
-    private List<Direction> getShortestWay(Case dst) {
+    public Map<Direction, Double> getShortestWay(Case destination) {
         int nbLignes = carte.getNbLignes();
         int nbColonnes = carte.getNbColonnes();
         Graph graph = new Graph();
@@ -47,29 +48,23 @@ public class RobotSimulation {
             for (int j = 0; j < nbColonnes; j++) {
                 Node newNode = new Node(carte.getCase(i, j));
 
-                Case tileActuel = carte.getCase(i,j);
+                List<Case> voisinsNode = carte.getAllVoisins(carte.getCase(i, j));
 
-                if (carte.voisinExiste(tileActuel, Direction.NORD)) {
-                    if (robot.getVitesse(carte.getCase(i-1, j).getNature()) > 0) {
-                        newNode.addDestination(carte.getCase(i - 1, j), timeToCross(carte.getCase(i - 1, j)));
+                for (Case voisin: voisinsNode) {
+                    if (robot.getVitesse(voisin.getNature()) > 0) {
+                        newNode.addDestination(voisin, timeToCross(voisin));
                     }
-                }
 
-                if (carte.voisinExiste(tileActuel, Direction.SUD)) {
-                    if (robot.getVitesse(carte.getCase(i+1, j).getNature()) > 0) {
-                        newNode.addDestination(carte.getCase(i + 1, j), timeToCross(carte.getCase(i + 1, j)));
+                    if (robot.getVitesse(voisin.getNature()) > 0) {
+                        newNode.addDestination(voisin, timeToCross(voisin));
                     }
-                }
 
-                if (carte.voisinExiste(tileActuel, Direction.OUEST)) {
-                    if (robot.getVitesse(carte.getCase(i, j-1).getNature()) > 0) {
-                        newNode.addDestination(carte.getCase(i, j - 1), timeToCross(carte.getCase(i, j - 1)));
+                    if (robot.getVitesse(voisin.getNature()) > 0) {
+                        newNode.addDestination(voisin, timeToCross(voisin));
                     }
-                }
 
-                if (carte.voisinExiste(tileActuel, Direction.EST)) {
-                    if (robot.getVitesse(carte.getCase(i, j+1).getNature()) > 0) {
-                        newNode.addDestination(carte.getCase(i, j + 1), timeToCross(carte.getCase(i, j + 1)));
+                    if (robot.getVitesse(voisin.getNature()) > 0) {
+                        newNode.addDestination(voisin, timeToCross(voisin));
                     }
                 }
 
@@ -77,18 +72,12 @@ public class RobotSimulation {
             }
         }
 
-        graph = Dijkstra.calculateShortestPathFromSource(graph, graph.findNode(carte.getCase(robot.getPosition().getLigne(), robot.getPosition().getColonne())));
+        graph = Dijkstra.calculateShortestPathFromSource(graph, graph.findNodeByTile(robot.getPosition()));
 
-        Node destination = graph.findNode(dst);
-        // Print directions - need to change
-        if (destination != null) {
-            System.out.print("Dir: ");
+        Node destinationNode = graph.findNodeByTile(destination);
 
-            for (Direction dir : destination.getShortestPath()) {
-                System.out.print(dir.toString() + " ");
-            }
-            System.out.println();
-            return destination.getShortestPath();
+        if (destinationNode != null) {
+            return destinationNode.getShortestPath();
         }
         return null;
     }
@@ -136,15 +125,19 @@ public class RobotSimulation {
         return tempsIntervertion;
     }
 
-    public long moveTo(Case dst, long startDate) {
-        List<Direction> shortestPath = getShortestWay(dst);
+    public long moveTo(Case destination, long startDate) {
+        Map<Direction, Double> shortestPath = getShortestWay(destination);
 
         long date = startDate + 1;
 
         assert shortestPath != null;
-        for (Direction dir : shortestPath) {
+        System.out.println("Dateinicial: " + date);
+        for (Map.Entry<Direction, Double> path: shortestPath.entrySet()) {
+            Direction dir = path.getKey();
+            System.out.println("Path: " + path.getKey());
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
-            date++;
+            date += path.getValue();
+            System.out.println("Date: " + date);
         }
 
         return date;

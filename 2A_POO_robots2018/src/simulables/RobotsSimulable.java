@@ -1,7 +1,7 @@
 package simulables;
 
 import gui.GUISimulator;
-import representation_donnees.Robot;
+import RepresentationDonnees.Robot;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,12 @@ public class RobotsSimulable {
 
     public static void initRobotsSimulablesList(int size) {
         robots_simulables = new ArrayList<RobotSimulable>(size);
+    }
+
+    public static void clearRobotsSimulablesList() {
+        if(robots_simulables != null) {
+            robots_simulables.clear();
+        }
     }
 
     public static ArrayList<RobotSimulable> getRobotsList() { return robots_simulables; }

@@ -2,11 +2,7 @@ package simulables;
 
 import gui.GUISimulator;
 import gui.ImageElement;
-import gui.Simulable;
-import representation_donnees.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+import RepresentationDonnees.*;
 
 public class RobotSimulable{
     private GUISimulator gui;
@@ -21,9 +17,8 @@ public class RobotSimulable{
         this.robot = r;
 
         try {
-
-            this.x = robot.getPosition().getColonne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
-            this.y = robot.getPosition().getLigne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
+            this.x = CarteSimulable.getMinX() + robot.getPosition().getColonne() * CarteSimulable.getSquareSide();
+            this.y = CarteSimulable.getMinY() + robot.getPosition().getLigne() * CarteSimulable.getSquareSide();
 
         } catch (NullPointerException e) {
             System.out.println("Case invalid");
@@ -36,30 +31,34 @@ public class RobotSimulable{
 
     }
 
-    public Robot getRobot() { return this.robot;}
+    public Robot getRobot() {
+         return this.robot;
+     }
 
     public void moveDirection (Direction d) {
-        Case new_pos = robot.getPosition();
+
+        Case newPos = robot.getPosition();
+
          try {
-             new_pos = CarteSimulable.getCarteSim().getVoisin(robot.getPosition(), d);
+             newPos = CarteSimulable.getCarteSim().getVoisin(robot.getPosition(), d);
          } catch (ArrayIndexOutOfBoundsException e) {
              System.out.println("Voisin ne existe pas");
          }
-         System.out.println("new pos (" + new_pos.getLigne() + ", " + new_pos.getColonne() + ")");
-         robot.setPosition(new_pos);
+         System.out.println("new pos (" + newPos.getLigne() + ", " + newPos.getColonne() + ")");
+         robot.setPosition(newPos);
 
-         boolean can_move = true;
+         boolean canMove = true;
         try {
 
-            this.x = robot.getPosition().getColonne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
-            this.y = robot.getPosition().getLigne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
+            this.x = CarteSimulable.getMinX() + robot.getPosition().getColonne() * CarteSimulable.getSquareSide();
+            this.y = CarteSimulable.getMinY() + robot.getPosition().getLigne() * CarteSimulable.getSquareSide();
 
         } catch (NullPointerException e) {
             System.out.println("Case invalid");
-            can_move = false;
+            canMove = false;
         }
 
-        if(can_move)
+        if(canMove)
             translade(d);
      }
 

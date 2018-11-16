@@ -1,18 +1,18 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 import java.util.ArrayList;
 
 public class DonneesSimulation {
-    private Carte carte_sim;
+    private Carte carteSim;
     private ArrayList<Robot> robots;
     private ArrayList<Incendie> incendies;
 
 
     public void setCarte(Carte carte) {
-        carte_sim = carte;
+        carteSim = carte;
     }
 
-    public Carte getCarte() { return carte_sim; }
+    public Carte getCarte() { return carteSim; }
 
     public void initRobotsList(int size) {
         robots = new ArrayList<Robot>(size);

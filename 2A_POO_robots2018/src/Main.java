@@ -1,6 +1,6 @@
 import gui.GUISimulator;
 import io.LecteurDonnees;
-import representation_donnees.DonneesSimulation;
+import RepresentationDonnees.DonneesSimulation;
 import simulables.CarteSimulable;
 import simulables.IncendiesSimulable;
 import simulables.RobotSimulable;
@@ -15,7 +15,7 @@ import java.util.zip.DataFormatException;
 
 public class Main {
     public static void main (String[] args) {
-        DonneesSimulation sim_data;
+        DonneesSimulation simData;
 
         if (args.length < 1) {
             System.out.println("Syntaxe: java TestImpression <nomDeFichier>");
@@ -23,37 +23,35 @@ public class Main {
         }
 
         try {
-
-            sim_data = LecteurDonnees.creeDonnees(args[0]);
+            simData = LecteurDonnees.creeDonnees(args[0]);
 
             //Start simulation
-            GUISimulator gui = new GUISimulator(600, 600, Color.BLACK);
-            double square_side_bulk = (double) (600 * 600) / (sim_data.getCarte().getNbLignes() * sim_data.getCarte().getNbColonnes()); //area per square
-            square_side_bulk = Math.ceil(Math.sqrt(square_side_bulk)); //side per square
+            GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
 
-            CarteSimulable.setSquareSide(square_side_bulk);
-            CarteSimulable.draw(gui, sim_data.getCarte());
+            Simulateur simulateur = new Simulateur(gui, simData);
 
-            RobotsSimulable.initRobotsSimulablesList(sim_data.getRobotsList().size());
-            RobotsSimulable.drawRobots(gui, sim_data.getRobotsList());
+            // Little test for shortest path
+            RobotSimulable robot_3 = RobotsSimulable.getRobotSimulable(2);
 
-            IncendiesSimulable.initIncendiesSimulablesList(sim_data.getIncendiesList().size());
-            IncendiesSimulable.drawIncendies(gui, sim_data.getIncendiesList());
+            RobotSimulation simu = new RobotSimulation(robot_3, simData.getCarte(), simulateur);
+            simu.moveTo(simData.getCarte().getCase(2, 1), 1);
 
-            Simulateur simulateur = new Simulateur(gui);
+//            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
+//            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
+//                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), simulateur));
+//            }
+//
+//            chef.chefier();
 
-            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
-            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
-                chef.introduce(new RobotSimulation(robotSimulable, sim_data.getCarte(), simulateur));
-            }
-
-            chef.chefier();
-
-
-        } catch (FileNotFoundException e) {
+        } catch (
+                FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");
-        } catch (DataFormatException e) {
+        } catch (
+                DataFormatException e) {
             System.out.println("\n\t**format du fichier " + args[0] + " invalide: " + e.getMessage());
         }
+
+
+
     }
 }

@@ -1,6 +1,6 @@
 package dijkstra;
 
-import representation_donnees.Case;
+import RepresentationDonnees.Case;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +21,7 @@ public class Graph {
         this.nodes = nodes;
     }
 
-    public Node findNode(Case tile) {
+    public Node findNodeByTile(Case tile) {
         for (Node node: getNodes()) {
             if (node.getTile().equals(tile)) {
                 return node;

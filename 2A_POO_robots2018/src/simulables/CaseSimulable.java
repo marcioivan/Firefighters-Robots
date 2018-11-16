@@ -2,12 +2,7 @@ package simulables;
 
 import gui.GUISimulator;
 import gui.ImageElement;
-import gui.Rectangle;
-import gui.Simulable;
-import representation_donnees.Case;
-import representation_donnees.NatureTerrain;
-
-import java.awt.*;
+import RepresentationDonnees.Case;
 
 public class CaseSimulable{
     private GUISimulator gui;
@@ -22,8 +17,8 @@ public class CaseSimulable{
 
         try {
 
-            this.x = tile.getColonne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
-            this.y = tile.getLigne() * (int) CarteSimulable.getSquareSide() + (int) CarteSimulable.getSquareSide(); // 1 square extra for edge
+            this.x = CarteSimulable.getMinX() + tile.getColonne() * CarteSimulable.getSquareSide();
+            this.y = CarteSimulable.getMinY() + tile.getLigne() * CarteSimulable.getSquareSide();
 
         } catch (NullPointerException e) {
             System.out.println("Case invalid");

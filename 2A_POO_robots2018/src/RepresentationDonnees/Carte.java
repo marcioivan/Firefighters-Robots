@@ -1,40 +1,43 @@
-package representation_donnees;
+package RepresentationDonnees;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Carte {
 	private int taille;
-	private Case[][] carte_matrix;
-	private int n_lin, n_col;
+	private Case[][] carteMatrix;
+	private int nLin, nCol;
 
 	public Carte(int nbLignes, int nbColonnes, int tailleCases) {
-		carte_matrix = new Case[nbLignes][nbColonnes];
-		n_lin = nbLignes;
-		n_col = nbColonnes;
+		carteMatrix = new Case[nbLignes][nbColonnes];
+		nLin = nbLignes;
+		nCol = nbColonnes;
 		taille = tailleCases;
 	}
 	public int getNbLignes() {
-		return n_lin;
+		return nLin;
 	}
 	public int getNbColonnes() {
-		return n_col;
+		return nCol;
 	}
 	public int getTailleCases() {
 		return taille;
 	}
 	public void insertCase(int ligne, int colonne, Case c) {
-		carte_matrix[ligne][colonne] = c;
+		carteMatrix[ligne][colonne] = c;
 	}
 	public Case getCase(int lig, int col) {
-		return carte_matrix[lig][col];
+		return carteMatrix[lig][col];
 	}
 
 	public boolean voisinExiste(Case src, Direction dir) {
 		boolean existe = false;
 
 		switch(dir) {
-			case EST: if(src.getColonne() + 1 >= n_col) existe = false;
+			case EST: if(src.getColonne() + 1 >= nCol) existe = false;
 					  else existe = true;
 					  break;
-			case SUD: if(src.getLigne() + 1 >= n_lin) existe = false;
+			case SUD: if(src.getLigne() + 1 >= nLin) existe = false;
 					  else existe = true;
 					  break;
 			case NORD: if(src.getLigne() - 1 < 0) existe = false;
@@ -63,5 +66,27 @@ public class Carte {
 		else throw new ArrayIndexOutOfBoundsException();
 
 		return voisin;
+	}
+
+	public List<Case> getAllVoisins(Case src) {
+		List<Case> voisins = new LinkedList<>();
+
+		if (voisinExiste(src, Direction.NORD)) {
+			voisins.add(getVoisin(src, Direction.NORD));
+		}
+
+		if (voisinExiste(src, Direction.SUD)) {
+			voisins.add(getVoisin(src, Direction.SUD));
+		}
+
+		if (voisinExiste(src, Direction.OUEST)) {
+			voisins.add(getVoisin(src, Direction.OUEST));
+		}
+
+		if (voisinExiste(src, Direction.EST)) {
+			voisins.add(getVoisin(src, Direction.EST));
+		}
+
+		return voisins;
 	}
 }

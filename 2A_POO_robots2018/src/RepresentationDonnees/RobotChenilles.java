@@ -1,4 +1,4 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 public class RobotChenilles extends RobotTerrestre {
 

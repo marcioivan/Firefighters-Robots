@@ -1,4 +1,4 @@
-package representation_donnees;
+package RepresentationDonnees;
 
 public class Case {
 	private int ligne, colonne;
@@ -44,15 +44,18 @@ public class Case {
 		int difLigne = this.ligne - voisin.getLigne();
 		int difColonne = this.colonne - voisin.getColonne();
 
-		if(difLigne > 0)
+		if(difLigne == 1)
 			return Direction.NORD;
 
-		if(difLigne < 0)
+		if(difLigne == -1)
 			return Direction.SUD;
 
-		if(difColonne < 0)
+		if(difColonne == 1)
+			return Direction.OUEST;
+
+		if(difColonne == -1)
 			return Direction.EST;
 
-		return Direction.OUEST;
+		return null;
 	}
 }

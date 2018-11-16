@@ -1,6 +1,6 @@
 package simulation;
 
-import representation_donnees.Direction;
+import RepresentationDonnees.Direction;
 import simulables.RobotSimulable;
 
 public class DeplaceRobotEvenement extends Evenement {

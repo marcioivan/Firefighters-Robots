@@ -1,12 +1,9 @@
 package dijkstra;
 
-import representation_donnees.Case;
-import representation_donnees.Direction;
+import RepresentationDonnees.Case;
+import RepresentationDonnees.Direction;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Dijkstra {
     public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
@@ -21,7 +18,7 @@ public class Dijkstra {
             Node currentNode = getLowestDistanceNode(unsettledNodes);
             unsettledNodes.remove(currentNode);
             for (Map.Entry<Case, Double> adjacencyPair: currentNode.getAdjacentCases().entrySet()) {
-                Node adjacentNode = graph.findNode(adjacencyPair.getKey());
+                Node adjacentNode = graph.findNodeByTile(adjacencyPair.getKey());
                 Double edgeWeight = adjacencyPair.getValue();
                 if (!settledNodes.contains(adjacentNode)) {
                     calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
@@ -50,11 +47,12 @@ public class Dijkstra {
         Double sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
             evaluationNode.setDistance(sourceDistance + edgeWeight);
-            LinkedList<Direction> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
-
-            shortestPath.add(sourceNode.getTile().getDirectionVoisin(evaluationNode.getTile()));
-
-            evaluationNode.setShortestPath(shortestPath);
+            Map<Direction, Double> shortestPath = new HashMap<>(sourceNode.getShortestPath());
+            Direction dirVoisin = sourceNode.getTile().getDirectionVoisin(evaluationNode.getTile());
+            if(dirVoisin != null) {
+                shortestPath.put(dirVoisin, evaluationNode.getDistance());
+                evaluationNode.setShortestPath(shortestPath);
+            }
         }
     }
 }
