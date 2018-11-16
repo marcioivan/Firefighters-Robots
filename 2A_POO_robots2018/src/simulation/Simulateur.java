@@ -27,14 +27,34 @@ public class Simulateur implements Simulable {
         gui.setSimulable(this);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void ajouteEvenement(Evenement e) {
         evenements.add(e);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public long getDateSimulation() { return dateSimulation; }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     private void incrementeDate() { dateSimulation++; }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     private boolean simulationTerminee() {
         return evenements.size() == 0;
     }

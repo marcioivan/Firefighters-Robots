@@ -38,6 +38,11 @@ public class CaseSimulable{
         }
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void draw() {
         //System.out.println("printing (" + tile.getLigne() + ", " + tile.getColonne() + ")" );
         gui.addGraphicalElement(new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null));

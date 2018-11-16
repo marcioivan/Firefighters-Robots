@@ -9,14 +9,29 @@ public class Incendie {
         intensite = intens;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public Case getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public int getIntensite() {
         return intensite;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void setIntensite(int new_intensite) { intensite = new_intensite; }
 
 }

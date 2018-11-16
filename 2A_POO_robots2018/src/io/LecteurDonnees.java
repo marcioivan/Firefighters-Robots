@@ -81,6 +81,11 @@ public class LecteurDonnees {
         scanner.useLocale(Locale.US);
     }
 
+
+    /**
+     *
+     * @param
+     */
     private void creeCarte(DonneesSimulation sim_data) throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -106,7 +111,10 @@ public class LecteurDonnees {
         }
     }
 
-
+    /**
+     *
+     * @param
+     */
     private Case creeCase(int lig, int col) throws DataFormatException {
         ignorerCommentaires();
         String chaineNature = new String();
@@ -134,6 +142,10 @@ public class LecteurDonnees {
         return new_case;
     }
 
+    /**
+     *
+     * @param
+     */
     private void creeIncendies(DonneesSimulation sim_data) throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -150,6 +162,10 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+     *
+     * @param
+     */
     private Incendie creeIncendie(int i) throws DataFormatException {
         ignorerCommentaires();
         System.out.print("Incendie " + i + ": ");
@@ -178,7 +194,10 @@ public class LecteurDonnees {
         return  new_incendie;
     }
 
-
+    /**
+     *
+     * @param
+     */
     private void creeRobots(DonneesSimulation sim_data) throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -195,6 +214,10 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+     *
+     * @param
+     */
     private Robot creeRobot(int i) throws DataFormatException {
         ignorerCommentaires();
         System.out.print("representation_donnees.Robot " + i + ": ");

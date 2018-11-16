@@ -27,14 +27,29 @@ public class IncendieSimulable{
         }
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public int getColonne() {
         return (x - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public int getLigne() {
         return (y - (int) CarteSimulable.getSquareSide()) / (int) CarteSimulable.getSquareSide();
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void decroitre(int lit) {
         if(incendie.getIntensite() - lit > 0) {
             //System.out.println("Feu intensite: " + incendie.getIntensite());
@@ -45,15 +60,30 @@ public class IncendieSimulable{
         }
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public boolean isEstinguished() {
         return incendie.getIntensite() == 0;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void eteindre() {
         System.out.println("Le feu a été éteint");
         image.translate(1000000000, 1000000000); //delete
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     void draw() {
         image = new ImageElement(x, y, imagefile, (int) CarteSimulable.getSquareSide(), (int) CarteSimulable.getSquareSide(), null);
         gui.addGraphicalElement(image);

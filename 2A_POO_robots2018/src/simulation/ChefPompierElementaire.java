@@ -18,6 +18,11 @@ public class ChefPompierElementaire {
     }
 
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void chefier() {
         while(!incendies.isEmpty()) {
             RobotSimulation aux;
@@ -37,19 +42,39 @@ public class ChefPompierElementaire {
         }
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void introduce(RobotSimulation newRobot) {
         robotsLibres.add(newRobot);
         newRobot.setChef(this);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void signalFree(RobotSimulation robot) {
         robotsLibres.add(robot);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void signalOccupied(RobotSimulation robot) {
         robotsLibres.remove(robot);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void signalFireEstinguished(IncendieSimulable incendie) {
         incendies.remove(incendie);
         tasks.remove(incendie);

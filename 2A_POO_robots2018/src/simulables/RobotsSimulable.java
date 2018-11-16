@@ -8,14 +8,34 @@ import java.util.ArrayList;
 public class RobotsSimulable {
     private static ArrayList<RobotSimulable> robots_simulables;
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void initRobotsSimulablesList(int size) {
         robots_simulables = new ArrayList<RobotSimulable>(size);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static ArrayList<RobotSimulable> getRobotsList() { return robots_simulables; }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static RobotSimulable getRobotSimulable(int index) { return robots_simulables.get(index); }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void drawRobots(GUISimulator gui, ArrayList<Robot> robots_list) {
         RobotSimulable curr_robot;
 

@@ -5,8 +5,18 @@ public abstract class Evenement {
 
     public Evenement(long d) { date = d; }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public long getDate() { return date; }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public abstract void execute();
 
 }
