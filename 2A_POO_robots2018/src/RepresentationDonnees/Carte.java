@@ -14,22 +14,53 @@ public class Carte {
 		nCol = nbColonnes;
 		taille = tailleCases;
 	}
+
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public int getNbLignes() {
 		return nLin;
 	}
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public int getNbColonnes() {
 		return nCol;
 	}
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public int getTailleCases() {
 		return taille;
 	}
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public void insertCase(int ligne, int colonne, Case c) {
 		carteMatrix[ligne][colonne] = c;
 	}
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public Case getCase(int lig, int col) {
 		return carteMatrix[lig][col];
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public boolean voisinExiste(Case src, Direction dir) {
 		boolean existe = false;
 
@@ -51,6 +82,11 @@ public class Carte {
 		return existe;
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public Case getVoisin(Case src, Direction dir) throws ArrayIndexOutOfBoundsException {
 		Case voisin = null;
 

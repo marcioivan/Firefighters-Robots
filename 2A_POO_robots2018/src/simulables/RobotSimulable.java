@@ -31,10 +31,20 @@ public class RobotSimulable{
 
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public Robot getRobot() {
-         return this.robot;
-     }
+        return this.robot;
+    }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void moveDirection (Direction d) {
 
         Case newPos = robot.getPosition();
@@ -62,6 +72,11 @@ public class RobotSimulable{
             translade(d);
      }
 
+    /**
+     *
+     * @param
+     * @return
+     */
      public int deverser() {
          if(robot instanceof RobotDrone) { robot.deverserEau(0); return 10000; }
          else if(robot instanceof RobotChenilles) { robot.deverserEau(100); return 100; }
@@ -71,11 +86,20 @@ public class RobotSimulable{
          return 0;
      }
 
+    /**
+     *
+     * @param
+     * @return
+     */
      public void remplir() {
          robot.remplirReservoir();
      }
 
-
+    /**
+     *
+     * @param
+     * @return
+     */
     void draw() {
         //System.out.println("printing robot at (" + robot.getPosition().getLigne() + ", " + robot.getPosition().getColonne() + ")" );
         if(imagefile != null) {
@@ -84,6 +108,11 @@ public class RobotSimulable{
         }
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     private void translade(Direction d) {
          int dx = 0, dy = 0;
 

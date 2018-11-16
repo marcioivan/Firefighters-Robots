@@ -40,14 +40,29 @@ public class Simulateur implements Simulable {
         initSimulation();
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public void ajouteEvenement(Evenement e) {
         evenements.add(e);
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public long getDateSimulation() {
         return dateSimulation;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     private void incrementeDate() {
         dateSimulation++;
     }

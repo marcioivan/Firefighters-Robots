@@ -6,29 +6,51 @@ import RepresentationDonnees.Robot;
 import java.util.ArrayList;
 
 public class RobotsSimulable {
-    private static ArrayList<RobotSimulable> robots_simulables;
+    private static ArrayList<RobotSimulable> robotsSimulables;
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void initRobotsSimulablesList(int size) {
-        robots_simulables = new ArrayList<RobotSimulable>(size);
+        robotsSimulables = new ArrayList<RobotSimulable>(size);
     }
 
     public static void clearRobotsSimulablesList() {
-        if(robots_simulables != null) {
-            robots_simulables.clear();
+        if(robotsSimulables != null) {
+            robotsSimulables.clear();
         }
     }
 
-    public static ArrayList<RobotSimulable> getRobotsList() { return robots_simulables; }
+    /**
+     *
+     * @param
+     * @return
+     */
+    public static ArrayList<RobotSimulable> getRobotsList() {
+        return robotsSimulables;
+    }
 
-    public static RobotSimulable getRobotSimulable(int index) { return robots_simulables.get(index); }
+    /**
+     *
+     * @param
+     * @return
+     */
+    public static RobotSimulable getRobotSimulable(int index) { return robotsSimulables.get(index); }
 
-    public static void drawRobots(GUISimulator gui, ArrayList<Robot> robots_list) {
-        RobotSimulable curr_robot;
+    /**
+     *
+     * @param
+     * @return
+     */
+    public static void drawRobots(GUISimulator gui, ArrayList<Robot> robotsList) {
+        RobotSimulable currRobot;
 
-        for(int i = 0; i < robots_list.size(); i++) {
-            curr_robot = new RobotSimulable(gui, robots_list.get(i));
-            curr_robot.draw();
-            robots_simulables.add(curr_robot);
+        for(int i = 0; i < robotsList.size(); i++) {
+            currRobot = new RobotSimulable(gui, robotsList.get(i));
+            currRobot.draw();
+            robotsSimulables.add(currRobot);
         }
     }
 }

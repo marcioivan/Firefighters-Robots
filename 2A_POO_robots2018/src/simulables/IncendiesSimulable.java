@@ -8,18 +8,35 @@ import java.util.ArrayList;
 public class IncendiesSimulable {
     private static ArrayList<IncendieSimulable> incendiesSimulables;
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void initIncendiesSimulablesList(int size) {
         incendiesSimulables = new ArrayList<>(size);
     }
-
+    
     public static void clearIncendiesSimulablesList() {
         if(incendiesSimulables != null) {
             incendiesSimulables.clear();
         }
     }
+    
+    /**
+     *
+     * @param
+     * @return
+     */
+    public static  ArrayList<IncendieSimulable> getIncendiesList() {
+        return incendiesSimulables;
+    }
 
-    public static  ArrayList<IncendieSimulable> getIncendiesList() { return incendiesSimulables; }
-
+    /**
+     *
+     * @param
+     * @return
+     */
     public static IncendieSimulable getIncendieAt(int lig, int col) {
         for (IncendieSimulable incendieSimulable : incendiesSimulables) {
             if (incendieSimulable.getLigne() == lig && incendieSimulable.getColonne() == col)
@@ -28,6 +45,11 @@ public class IncendiesSimulable {
         return null;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void drawIncendies(GUISimulator gui, ArrayList<Incendie> incendiesList) {
         IncendieSimulable currIncendie;
 
@@ -37,5 +59,4 @@ public class IncendiesSimulable {
             incendiesSimulables.add(currIncendie);
         }
     }
-
 }

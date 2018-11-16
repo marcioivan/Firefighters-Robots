@@ -9,13 +9,29 @@ public class CarteSimulable {
     private static int minX;
     private static int minY;
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static Carte getCarteSim() {return CarteSimulable.carteSim;}
 
-    public static void setSquareSide(int l) {
-        CarteSimulable.squareSide = l;
-    }
+    /**
+     *
+     * @param
+     * @return
+     */
     public static int getSquareSide() {
         return CarteSimulable.squareSide;
+    }
+
+    /**
+     *
+     * @param
+     * @return
+     */
+    public static void setSquareSide(int squareSide) {
+        CarteSimulable.squareSide = squareSide;
     }
 
     public static int getMinX() {
@@ -32,6 +48,11 @@ public class CarteSimulable {
         CarteSimulable.minY = minY;
     }
 
+    /**
+     *
+     * @param
+     * @return
+     */
     public static void draw(GUISimulator gui, Carte carte) {
         carteSim = carte;
 

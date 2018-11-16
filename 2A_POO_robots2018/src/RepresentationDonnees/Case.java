@@ -28,18 +28,38 @@ public class Case {
 		return ligne == tile.getLigne() && colonne == tile.getColonne() && nature.equals(tile.getNature());
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public int getLigne() {
 		return ligne;
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public int getColonne() {
 		return colonne;
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public NatureTerrain getNature() {
 		return nature;
 	}
 
+	/**
+	 *
+	 * @param
+	 * @return
+	 */
 	public Direction getDirectionVoisin(Case voisin) {
 		int difLigne = this.ligne - voisin.getLigne();
 		int difColonne = this.colonne - voisin.getColonne();
