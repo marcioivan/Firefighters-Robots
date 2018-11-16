@@ -50,9 +50,17 @@ public class IncendieSimulable{
      * @param
      * @return
      */
+    public Incendie getIncendie() {
+        return incendie;
+    }
+
+    /**
+     *
+     * @param
+     * @return
+     */
     public void decroitre(int lit) {
         if(incendie.getIntensite() - lit > 0) {
-            //System.out.println("Feu intensite: " + incendie.getIntensite());
             incendie.setIntensite(incendie.getIntensite() - lit);
         }
         else {

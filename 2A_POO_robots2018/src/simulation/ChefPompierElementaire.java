@@ -31,8 +31,8 @@ public class ChefPompierElementaire {
                 if (!tasks.containsKey(incendie)) {
                     if (!robotsLibres.isEmpty()) {
                         robot = robotsLibres.poll();
-                        tasks.put(incendie, robot);
                         robot.intervinir(incendie);
+                        tasks.put(incendie, robot);
                     }
                 }
             }

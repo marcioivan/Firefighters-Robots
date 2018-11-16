@@ -8,4 +8,10 @@ public abstract class RobotTerrestre extends Robot{
         super.vitesse = vit;
     }
 
+    public RobotTerrestre(Case pos, int vit, int volume) {
+        super.setPosition(pos);
+        super.vitesse = vit;
+        super.volume = volume;
+    }
+
 }

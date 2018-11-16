@@ -17,9 +17,14 @@ public class IntervinirRobotEvenement extends Evenement {
     @Override
     public void execute() {
         try {
-            int lit = robotSimulable.deverser();
-            if (incendieSimulable != null)
-                incendieSimulable.decroitre(lit);
+            while(robotSimulable.getRobot().getVolume() > 0 && ! incendieSimulable.isEstinguished()) {
+//                System.out.println("Robot Volume: " + robotSimulable.getRobot().getVolume());
+                int lit = robotSimulable.deverser();
+                if (incendieSimulable != null) {
+                    incendieSimulable.decroitre(lit);
+//                    System.out.println("APAGA: " + incendieSimulable.getIncendie().getIntensite());
+                }
+            }
         } catch (ArithmeticException e) {
             System.out.println("Pas d'eau!");
         }

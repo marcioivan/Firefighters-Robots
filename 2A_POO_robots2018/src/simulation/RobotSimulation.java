@@ -7,6 +7,7 @@ import RepresentationDonnees.*;
 import simulables.IncendieSimulable;
 import simulables.RobotSimulable;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class RobotSimulation {
         return (carte.getTailleCases() * 3600) / (robot.getVitesse(tile.getNature()) * 1000);
     }
 
-    public List<Direction> getShortestWay(Case destination) {
+    public Node getShortestWay(Case destination) {
         int nbLignes = carte.getNbLignes();
         int nbColonnes = carte.getNbColonnes();
         Graph graph = new Graph();
@@ -77,23 +78,25 @@ public class RobotSimulation {
         Node destinationNode = graph.findNodeByTile(destination);
 
         if (destinationNode != null) {
-            return destinationNode.getShortestPath();
+            return destinationNode;
         }
         return null;
     }
 
     public long moveTo(Case destination, long startDate) {
-        List<Direction> shortestPath = getShortestWay(destination);
+        Node nodeShortestPath = getShortestWay(destination);
 
         long date = startDate + 1;
 
-        assert shortestPath != null;
-        for (Direction dir: shortestPath) {
+        assert nodeShortestPath != null;
+
+        long totalTime = nodeShortestPath.getDistance().longValue()/1000;
+        for (Direction dir: nodeShortestPath.getShortestPath()) {
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
             date++;
         }
 
-        return date;
+        return date + totalTime;
     }
 
     private Case getEauProche(Case src) {
@@ -128,13 +131,14 @@ public class RobotSimulation {
         return found;
     }
 
-    private int getTempsIntervertion () {
+    private int getTempsIntervertion (int incendieIntensite) {
         int tempsIntervertion = 0;
 
-        if(robot instanceof RobotDrone) tempsIntervertion = 30;
-        else if(robot instanceof RobotChenilles) tempsIntervertion = 8;
-        else if(robot instanceof RobotRoues) tempsIntervertion = 5;
-        else if(robot instanceof RobotPattes) tempsIntervertion = 1;
+        int nInterventions = robot.getVolume() / robotSimulable.deverser();
+        if(robot instanceof RobotDrone) tempsIntervertion = 30 * nInterventions;
+        else if(robot instanceof RobotChenilles) tempsIntervertion = 8 * nInterventions;
+        else if(robot instanceof RobotRoues) tempsIntervertion = 5 * nInterventions;
+        else if(robot instanceof RobotPattes) tempsIntervertion = incendieIntensite / 10;
 
         return tempsIntervertion;
     }
@@ -163,17 +167,20 @@ public class RobotSimulation {
             //goes to closest water tile to the fire to fill reservatory
             date = moveTo(getEauProche(robot.getPosition()), date);
             date = this.remplir(date);
-            chef.signalFree(this);
         }
         else {
-            date = this.moveTo(carte.getCase(incendie.getLigne(), incendie.getColonne()), date);
-            simulateur.ajouteEvenement(new IntervinirRobotEvenement(this.robotSimulable, incendie, date));
-            date = getTempsIntervertion();
-            if(incendie.isEstinguished()) {
+            date = moveTo(carte.getCase(incendie.getLigne(), incendie.getColonne()), date);
+            int incendieIntensite = incendie.getIncendie().getIntensite();
+            simulateur.ajouteEvenement(new IntervinirRobotEvenement(this.robotSimulable, incendie, date+1));
+//            System.out.println("Tempo: " + simulateur.getDateSimulation() + " quero q chegue " + date);
+            date = getTempsIntervertion(incendieIntensite);
+            if (incendie.isEstinguished()) {
+//                System.out.println("APAGOU PORRA");
                 simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, chef, date));
-                chef.signalFree(this);
             }
         }
+
+        simulateur.ajouteEvenement(new RobotLibreEvenement(this, chef, date+1));
     }
 
     void setChef(ChefPompierElementaire newChef) {

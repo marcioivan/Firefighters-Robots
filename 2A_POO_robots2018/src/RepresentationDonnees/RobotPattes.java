@@ -3,7 +3,7 @@ package RepresentationDonnees;
 public class RobotPattes extends RobotTerrestre{
 
     public RobotPattes(Case pos) {
-        super(pos, 30);
+        super(pos, 30, 1);
     }
 
     @Override
