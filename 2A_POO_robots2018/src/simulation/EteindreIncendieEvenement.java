@@ -20,8 +20,10 @@ public class EteindreIncendieEvenement extends Evenement {
 
     @Override
     public void execute() {
-        incendieSimulable.eteindre();
-        if(chef != null)
-            chef.signalFireEstinguished(incendieSimulable);
+        if(incendieSimulable.isEstinguished()) {
+            incendieSimulable.eteindre();
+            if(chef != null)
+                chef.signalFireEstinguished(incendieSimulable);
+        }
     }
 }

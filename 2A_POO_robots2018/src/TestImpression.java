@@ -26,6 +26,14 @@ public class TestImpression {
             //Start simulation
             GUISimulator gui = new GUISimulator(600, 600, Color.BLACK);
 
+            CarteSimulable.draw(gui, simData.getCarte());
+
+            RobotsSimulable.initRobotsSimulablesList(simData.getRobotsList().size());
+            RobotsSimulable.drawRobots(gui, simData.getRobotsList());
+
+            IncendiesSimulable.initIncendiesSimulablesList(simData.getIncendiesList().size());
+            IncendiesSimulable.drawIncendies(gui, simData.getIncendiesList());
+
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");
         } catch (DataFormatException e) {

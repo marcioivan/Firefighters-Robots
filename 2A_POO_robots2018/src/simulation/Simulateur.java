@@ -27,6 +27,7 @@ class EvenementComparator implements Comparator<Evenement> {
 
 public class Simulateur implements Simulable {
     private GUISimulator gui;
+    private String inputFile;
     private DonneesSimulation simData;
     private long dateSimulation;
     private PriorityQueue<Evenement> evenements;
@@ -34,10 +35,38 @@ public class Simulateur implements Simulable {
     public Simulateur(GUISimulator gui, DonneesSimulation simData) {
         this.gui = gui;
         this.simData = simData;
+
         gui.setSimulable(this);
         dateSimulation = 0;
         evenements = new PriorityQueue<>(10, new EvenementComparator());
         initSimulation();
+    }
+
+    public Simulateur(GUISimulator gui, String iFile) {
+        this.gui = gui;
+        this.inputFile = iFile;
+
+        gui.setSimulable(this);
+        dateSimulation = 0;
+        evenements = new PriorityQueue<>(10, new EvenementComparator());
+
+        try {
+            simData = LecteurDonnees.creeDonnees(inputFile);
+            initSimulation();
+
+            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
+            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
+                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), this));
+            }
+
+            chef.chefier();
+
+        }  catch (FileNotFoundException e) {
+            System.out.println("fichier " + inputFile + " inconnu ou illisible");
+        } catch (DataFormatException e) {
+            System.out.println("\n\t**format du fichier " + inputFile + " invalide: " + e.getMessage());
+        }
+
     }
 
     /**
@@ -118,6 +147,9 @@ public class Simulateur implements Simulable {
         IncendiesSimulable.clearIncendiesSimulablesList();
         IncendiesSimulable.initIncendiesSimulablesList(simData.getIncendiesList().size());
         IncendiesSimulable.drawIncendies(gui, simData.getIncendiesList());
+
+        System.out.println("=========Starting Simulation");
+
     }
 
     @Override
@@ -134,6 +166,22 @@ public class Simulateur implements Simulable {
         dateSimulation = 0;
         evenements.clear();
         gui.reset();
-        initSimulation();
+
+        try {
+            simData = LecteurDonnees.creeDonnees(inputFile);
+            initSimulation();
+
+            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
+            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
+                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), this));
+            }
+
+            chef.chefier();
+
+        }  catch (FileNotFoundException e) {
+            System.out.println("fichier " + inputFile + " inconnu ou illisible");
+        } catch (DataFormatException e) {
+            System.out.println("\n\t**format du fichier " + inputFile + " invalide: " + e.getMessage());
+        }
     }
 }

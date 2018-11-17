@@ -22,29 +22,11 @@ public class Main {
             System.exit(1);
         }
 
-        try {
-            simData = LecteurDonnees.creeDonnees(args[0]);
 
             //Start simulation
             GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
 
-            Simulateur simulateur = new Simulateur(gui, simData);
-
-            ChefPompierElementaire chef = new ChefPompierElementaire(IncendiesSimulable.getIncendiesList());
-            for (RobotSimulable robotSimulable : RobotsSimulable.getRobotsList()) {
-                chef.introduce(new RobotSimulation(robotSimulable, simData.getCarte(), simulateur));
-            }
-
-            chef.chefier();
-
-        } catch (
-                FileNotFoundException e) {
-            System.out.println("fichier " + args[0] + " inconnu ou illisible");
-        } catch (
-                DataFormatException e) {
-            System.out.println("\n\t**format du fichier " + args[0] + " invalide: " + e.getMessage());
-        }
-
+            Simulateur simulateur = new Simulateur(gui, args[0]);
 
 
     }

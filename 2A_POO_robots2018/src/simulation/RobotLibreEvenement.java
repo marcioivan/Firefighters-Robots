@@ -12,6 +12,7 @@ public class RobotLibreEvenement extends Evenement{
 
     @Override
     public void execute() {
+        System.out.println("[" + robot.toString() +"] I'm free");
         chef.signalFree(robot);
     }
 }

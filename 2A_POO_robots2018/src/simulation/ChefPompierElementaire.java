@@ -24,19 +24,26 @@ public class ChefPompierElementaire {
      * @return
      */
     public void chefier() {
-        while(!incendies.isEmpty()) {
+        //while(!incendies.isEmpty()) {
             RobotSimulation robot;
 
             for (IncendieSimulable incendie : incendies) {
-                if (!tasks.containsKey(incendie)) {
-                    if (!robotsLibres.isEmpty()) {
+                if(!robotsLibres.isEmpty()) {
+                    if (!tasks.containsKey(incendie)) {
+                        if (!tasks.containsValue(robotsLibres.peekFirst())) {
+                            robot = robotsLibres.poll();
+                            robot.intervinir(incendie);
+                            System.out.println("[Chef Pompier] Sending fire (" + incendie.getLigne() + ", " + incendie.getColonne() + ") to robot " + robot.toString());
+                            tasks.put(incendie, robot);
+                        }
+                    } else if (robotsLibres.contains(tasks.get(incendie))) {
                         robot = robotsLibres.poll();
                         robot.intervinir(incendie);
-                        tasks.put(incendie, robot);
+                        System.out.println("[Chef Pompier] Sending fire (" + incendie.getLigne() + ", " + incendie.getColonne() + ") to robot " + robot.toString());
                     }
                 }
             }
-        }
+        //}
     }
 
     /**
@@ -56,6 +63,7 @@ public class ChefPompierElementaire {
      */
     public void signalFree(RobotSimulation robot) {
         robotsLibres.add(robot);
+        chefier();
     }
 
     /**
@@ -73,6 +81,7 @@ public class ChefPompierElementaire {
      * @return
      */
     public void signalFireEstinguished(IncendieSimulable incendie) {
+        System.out.println("[Chef Pompier] Fire at (" + incendie.getLigne() + ", " + incendie.getColonne() + ") out.");
         incendies.remove(incendie);
         tasks.remove(incendie);
     }

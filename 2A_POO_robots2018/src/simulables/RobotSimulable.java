@@ -56,7 +56,7 @@ public class RobotSimulable{
          }
 
         if(newPos != null) {
-            System.out.println("new pos (" + newPos.getLigne() + ", " + newPos.getColonne() + ")");
+            //System.out.println("new pos (" + newPos.getLigne() + ", " + newPos.getColonne() + ")");
             robot.setPosition(newPos);
             translade(d);
         }
@@ -114,5 +114,17 @@ public class RobotSimulable{
          }
 
          image.translate(dx, dy);
+    }
+
+    @Override
+    public String toString() {
+        String type = "";
+
+        if(robot instanceof RobotDrone) { type = "drone"; }
+        else if(robot instanceof RobotChenilles) { type = "chenilles"; }
+        else if(robot instanceof RobotRoues) { type = "roues"; }
+        else if(robot instanceof RobotPattes) { type = "pattes"; }
+
+        return type;
     }
 }

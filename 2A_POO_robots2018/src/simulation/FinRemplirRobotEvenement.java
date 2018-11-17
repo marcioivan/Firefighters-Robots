@@ -13,6 +13,7 @@ public class FinRemplirRobotEvenement extends Evenement{
 
     @Override
     public void execute() {
+        System.out.println("[" + robotSimulable.toString() + "] Reservatory filled");
         robotSimulable.remplir();
     }
 }

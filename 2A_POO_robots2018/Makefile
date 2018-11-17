@@ -21,6 +21,9 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
+run: all
+	java -classpath bin:bin/gui.jar Main $(if)
+
 all: testInvader testLecture testImpression testSimulateur main
 
 testInvader:

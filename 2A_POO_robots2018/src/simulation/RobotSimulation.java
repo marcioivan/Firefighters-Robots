@@ -37,7 +37,7 @@ public class RobotSimulation {
 
     // T = dS/dV
     private Double timeToCross(Case tile) { // in seconds
-        return (carte.getTailleCases() * 3600) / (robot.getVitesse(tile.getNature()) * 1000);
+        return (carte.getTailleCases() * 3600) / (robot.getVitesse(tile.getNature()) * 1000 * 10);
     }
 
     public Node getShortestWay(Case destination) {
@@ -85,18 +85,19 @@ public class RobotSimulation {
 
     public long moveTo(Case destination, long startDate) {
         Node nodeShortestPath = getShortestWay(destination);
+        Case dst;
 
         long date = startDate + 1;
 
         assert nodeShortestPath != null;
 
-        long totalTime = nodeShortestPath.getDistance().longValue()/1000;
         for (Direction dir: nodeShortestPath.getShortestPath()) {
+            dst = carte.getVoisin(carte.getCase(robot.getPosition().getLigne(), robot.getPosition().getColonne()), dir);
             simulateur.ajouteEvenement(new DeplaceRobotEvenement(robotSimulable, dir, date));
-            date++;
+            date += this.timeToCross(dst);
         }
 
-        return date + totalTime;
+        return date;
     }
 
     private Case getEauProche(Case src) {
@@ -131,14 +132,13 @@ public class RobotSimulation {
         return found;
     }
 
-    private int getTempsIntervertion (int incendieIntensite) {
+    private int getTempsIntervertion () {
         int tempsIntervertion = 0;
 
-        int nInterventions = robot.getVolume() / robotSimulable.deverser();
-        if(robot instanceof RobotDrone) tempsIntervertion = 30 * nInterventions;
-        else if(robot instanceof RobotChenilles) tempsIntervertion = 8 * nInterventions;
-        else if(robot instanceof RobotRoues) tempsIntervertion = 5 * nInterventions;
-        else if(robot instanceof RobotPattes) tempsIntervertion = incendieIntensite / 10;
+        if(robot instanceof RobotDrone) tempsIntervertion = 30;
+        else if(robot instanceof RobotChenilles) tempsIntervertion = 8;
+        else if(robot instanceof RobotRoues) tempsIntervertion = 5;
+        else if(robot instanceof RobotPattes) tempsIntervertion = 1;
 
         return tempsIntervertion;
     }
@@ -164,20 +164,21 @@ public class RobotSimulation {
         chef.signalOccupied(this);
 
         if(robot.getVolume() == 0) {
+            System.out.println("[" + robotSimulable.toString() +"] No water.");
             //goes to closest water tile to the fire to fill reservatory
             date = moveTo(getEauProche(robot.getPosition()), date);
+            //System.out.println("[" + robotSimulable.toString() +"] Time to get to water: " + (date - simulateur.getDateSimulation() + 1));
             date = this.remplir(date);
+            //System.out.println("[" + robotSimulable.toString() +"] Time to finish filling reservatory: " + (date - simulateur.getDateSimulation() + 1));
         }
         else {
+            System.out.println("[" + robotSimulable.toString() +"] Going to estinguish fire at (" + incendie.getLigne() + ", " + incendie.getColonne() + ")");
             date = moveTo(carte.getCase(incendie.getLigne(), incendie.getColonne()), date);
-            int incendieIntensite = incendie.getIncendie().getIntensite();
+            //System.out.println("[" + robotSimulable.toString() +"] Time to get there: " + (date - simulateur.getDateSimulation() + 1));
             simulateur.ajouteEvenement(new IntervinirRobotEvenement(this.robotSimulable, incendie, date+1));
-//            System.out.println("Tempo: " + simulateur.getDateSimulation() + " quero q chegue " + date);
-            date = getTempsIntervertion(incendieIntensite);
-            if (incendie.isEstinguished()) {
-//                System.out.println("APAGOU PORRA");
-                simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, chef, date));
-            }
+            date += getTempsIntervertion();
+            //System.out.println("[" + robotSimulable.toString() +"] Time to end intervention: " + (date - simulateur.getDateSimulation() + 1));
+            simulateur.ajouteEvenement(new EteindreIncendieEvenement(incendie, chef, date));
         }
 
         simulateur.ajouteEvenement(new RobotLibreEvenement(this, chef, date+1));
@@ -185,5 +186,10 @@ public class RobotSimulation {
 
     void setChef(ChefPompierElementaire newChef) {
         chef = newChef;
+    }
+
+    @Override
+    public String toString() {
+        return robotSimulable.toString();
     }
 }
